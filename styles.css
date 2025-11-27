@@ -1,0 +1,246 @@
+/* Layout & general */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #05050a;
+  color: #f5f5f5;
+}
+
+.header {
+  background-color: #0d0d1a;
+  border-bottom: 1px solid #333;
+  padding: 1rem 1.5rem;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.subtitle {
+  margin: 0.3rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  background: rgba(16, 185, 129, 0.1);
+  color: #6ee7b7;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  font-size: 0.7rem;
+}
+
+.layout {
+  max-width: 1100px;
+  margin: 1rem auto 2rem;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: #101020;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 0 0 1px #222;
+}
+
+.section-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+/* Form elements */
+
+.label {
+  display: block;
+  margin-top: 0.7rem;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background-color: #050513;
+  color: #f5f5f5;
+  padding: 0.45rem 0.55rem;
+  font-size: 0.9rem;
+}
+
+.input {
+  box-sizing: border-box;
+}
+
+.textarea {
+  min-height: 160px;
+  resize: vertical;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  font-size: 0.85rem;
+}
+
+.input:focus,
+.textarea:focus,
+.file-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.file-input {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+}
+
+/* Buttons */
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.6rem;
+}
+
+.row-top {
+  margin-top: 0.5rem;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn.primary {
+  background-color: #4f46e5;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+}
+
+.btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.45);
+  background-color: #6366f1;
+}
+
+.btn.secondary {
+  background-color: #111827;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+}
+
+.btn.secondary:hover {
+  background-color: #1f2937;
+}
+
+/* Password meter */
+
+.password-meter {
+  margin-top: 0.35rem;
+}
+
+.password-bar {
+  height: 6px;
+  border-radius: 999px;
+  background-color: #222;
+  overflow: hidden;
+}
+
+.password-bar-inner {
+  height: 100%;
+  width: 0%;
+  background-color: #4b5563;
+  transition: width 0.15s ease, background-color 0.15s ease;
+}
+
+.password-strength-label {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  opacity: 0.8;
+}
+
+/* Status messages and misc */
+
+.status {
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  opacity: 0.95;
+}
+
+.status.error {
+  color: #f97373;
+}
+
+.status.ok {
+  color: #4ade80;
+}
+
+.small {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.mono {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  font-size: 0.82rem;
+}
+
+.test-output {
+  font-size: 0.78rem;
+  background-color: #020207;
+  border-radius: 8px;
+  padding: 0.5rem;
+  border: 1px solid #333;
+  margin-top: 0.5rem;
+  max-height: 160px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+/* Divider */
+
+.divider {
+  border-top: 1px solid #222;
+  margin: 1rem 0;
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
