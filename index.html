@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Secure Encryption Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Only local CSS (CSP: style-src 'self') -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <h1 class="title">
+      Secure Encryption Tool
+      <span class="badge">XChaCha20-Poly1305 · Argon2id</span>
+    </h1>
+    <p class="subtitle">
+      All cryptography runs locally in your browser. No custom algorithms. No keys ever leave this device.
+    </p>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- TEXT MODE -->
+  <section class="card">
+    <h2 class="section-title">Text Encryption / Decryption</h2>
+
+    <label for="password" class="label">Password (used to derive keys via Argon2id)</label>
+    <input id="password" type="password" autocomplete="new-password" class="input" />
+
+    <div class="password-meter">
+      <div class="password-bar">
+        <div id="password-bar-inner" class="password-bar-inner"></div>
+      </div>
+      <div id="password-strength-label" class="password-strength-label">Strength: —</div>
+    </div>
+
+    <label for="plaintext" class="label">Plaintext (for encryption)</label>
+    <textarea
+      id="plaintext"
+      class="textarea"
+      placeholder="Enter sensitive text here…"
+    ></textarea>
+
+    <div class="row">
+      <button id="encrypt-text-btn" class="btn primary">Encrypt Text</button>
+      <button id="decrypt-text-btn" class="btn secondary">Decrypt Text</button>
+      <button id="clear-text-btn" class="btn secondary">Clear</button>
+    </div>
+
+    <label for="ciphertext-json" class="label">
+      Encrypted JSON (for decryption / export)
+    </label>
+    <textarea
+      id="ciphertext-json"
+      class="textarea mono"
+      placeholder="Encrypted JSON will appear here after encryption. Paste JSON here to decrypt."
+    ></textarea>
+
+    <div class="row row-top">
+      <button id="copy-json-btn" class="btn secondary">
+        Copy Encrypted JSON (auto-clear clipboard)
+      </button>
+    </div>
+
+    <div id="text-status" class="status"></div>
+  </section>
+
+  <!-- FILE MODE & TESTS -->
+  <section class="card">
+    <h2 class="section-title">File Encryption / Decryption</h2>
+
+    <label for="file-input" class="label">File to encrypt</label>
+    <input type="file" id="file-input" class="file-input" />
+
+    <div class="row">
+      <button id="encrypt-file-btn" class="btn primary">
+        Encrypt File → Download .json
+      </button>
+    </div>
+
+    <label for="file-decrypt-input" class="label">Encrypted JSON file to decrypt</label>
+    <input type="file" id="file-decrypt-input" class="file-input" />
+
+    <div class="row">
+      <button id="decrypt-file-btn" class="btn secondary">
+        Decrypt File → Download Original
+      </button>
+    </div>
+
+    <div id="file-status" class="status"></div>
+
+    <div class="divider"></div>
+
+    <h3 class="section-title">Built-in Security Self-tests</h3>
+    <p class="small">
+      These tests verify: no nonce reuse, tampering detection, incorrect password handling, and basic RNG sanity.
+      All tests run locally in your browser.
+    </p>
+    <div class="row">
+      <button id="run-tests-btn" class="btn secondary">Run Self Tests</button>
+    </div>
+    <div id="test-output" class="test-output mono"></div>
+  </section>
+</main>
+
+<!-- Vendor crypto libs (local copies, no CDN) -->
+<script src="libsodium-wrappers-sumo.min.js" defer></script>
+<script src="argon2-bundled.min.js" defer></script>
+
+<!-- App logic -->
+<script src="app.js" defer></script>
+</body>
+</html>
