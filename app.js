@@ -2,7 +2,19 @@
 /* global sodium, argon2 */
 
 "use strict";
-
+(async () => {
+  try {
+    await sodium.ready;
+    console.log("libsodium ready ✅");
+  } catch (e) {
+    console.error("libsodium load failed ❌", e);
+  }
+  if (typeof argon2 === "undefined") {
+    console.error("Argon2 not loaded ❌");
+  } else {
+    console.log("Argon2 ready ✅");
+  }
+})();
 /************************************************************
  * Utility helpers
  ************************************************************/
