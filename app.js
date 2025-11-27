@@ -15,6 +15,46 @@
     console.log("Argon2 ready ✅");
   }
 })();
+"use strict";
+
+(function cryptoDiagnostics() {
+  // Runs immediately when app.js loads
+  window.addEventListener("DOMContentLoaded", async () => {
+    const textStatus = document.getElementById("text-status");
+    const fileStatus = document.getElementById("file-status");
+
+    function showFatal(msg) {
+      console.error(msg);
+      if (textStatus) {
+        textStatus.textContent = msg;
+        textStatus.className = "status error";
+      }
+      if (fileStatus) {
+        fileStatus.textContent = msg;
+        fileStatus.className = "status error";
+      }
+    }
+
+    try {
+      if (typeof sodium === "undefined") {
+        showFatal("Fatal: libsodium is not loaded. Check script path and CSP.");
+        return;
+      }
+      await sodium.ready;
+      console.log("libsodium ready ✅");
+    } catch (e) {
+      showFatal("Fatal: libsodium failed to initialize: " + e.message);
+      return;
+    }
+
+    if (typeof argon2 === "undefined") {
+      showFatal("Fatal: argon2 is not loaded. Check script path and CSP.");
+      return;
+    } else {
+      console.log("Argon2 ready ✅");
+    }
+  });
+})();
 /************************************************************
  * Utility helpers
  ************************************************************/
